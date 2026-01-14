@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  before_create :set_uuid
 
   enum :status, { active: 0, locked: 1, disabled: 2 }, default: :active
   UNLOCK_WINDOW = 30.minutes
@@ -38,5 +39,10 @@ class User < ApplicationRecord
       self.status = "active"
       self.save!
     end
+  end
+
+  private
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
   end
 end

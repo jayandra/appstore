@@ -10,5 +10,7 @@ class CreateUsers < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
+
+    add_index :users, :email
   end
 end
