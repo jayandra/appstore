@@ -5,7 +5,11 @@ class V1::ClientAppsController < ApplicationController
   # GET /v1/client_apps
   # GET /v1/client_apps.json
   def index
-    @client_apps = ClientApp.all
+    if params[:filter].blank?
+      @client_apps = ClientApp.all
+    else
+      @client_apps = ClientApp.where("name LIKE ? or tagline LIKE ?", "%#{params[:filter]}%", "%#{params[:filter]}%")
+    end
   end
 
   # GET /v1/client_apps/1
@@ -50,6 +54,6 @@ class V1::ClientAppsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def v1_client_app_params
-      params.permit(:name, :tagline, :image_filename)
+      params.permit(:name, :tagline, :image_filename, :filter)
     end
 end
