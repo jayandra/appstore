@@ -27,13 +27,13 @@ class V1::UsersController < ApplicationController
       @user.unlock_if_expired
 
       if @user.can_authenticate?
-        @token = Doorkeeper::AccessToken.create!(
-          resource_owner_id: @user.id,
-          application_id: @application.id,
-          expires_in: Doorkeeper.configuration.access_token_expires_in,
-          scopes: "read write"
-        )
-
+        token_response = Doorkeeper::OAuth::PasswordAccessTokenRequest.new(
+          Doorkeeper.configuration,
+          Doorkeeper::OAuth::Client.new(@application),
+          Doorkeeper::OAuth::Client::Credentials.new(params[:email], params[:password]),
+          @user
+        ).authorize
+        @token = token_response.token
         render "v1/users/login", status: :ok
       else
         render json: { errors: [ "Account is locked" ] }, status: :unauthorized
