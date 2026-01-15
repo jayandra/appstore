@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :client_apps
   use_doorkeeper
   namespace :v1 do
       post "users/create", to: "users#create", as: "users_create"
