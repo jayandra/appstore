@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
-  before_create :set_uuid
+  before_validation :set_uuid
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :uuid, presence: true, uniqueness: true
 
   enum :status, { active: 0, locked: 1, disabled: 2 }, default: :active
   UNLOCK_WINDOW = 30.minutes

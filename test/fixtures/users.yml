@@ -1,15 +1,24 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: MyString
-  password_digest: MyString
-  status: 1
-  failed_attempts: 1
-  locked_at: 2026-01-13 22:03:57
+  email: user1@example.com
+  # This is the BCrypt hash for 'password123'
+  password_digest: <%= BCrypt::Password.create('password123') %>
+  status: 0 # active
+  failed_attempts: 0
+  first_failed_at: 
+  locked_at: 
+  uuid: b24ec9a3-95d6-4895-a951-a9a18893a826
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
 
 two:
-  email: MyString
-  password_digest: MyString
-  status: 1
-  failed_attempts: 1
-  locked_at: 2026-01-13 22:03:57
+  email: user2@example.com
+  password_digest: <%= BCrypt::Password.create('password123') %>
+  status: 0 # active
+  failed_attempts: 0
+  first_failed_at: 
+  locked_at: 
+  uuid: 724c49a6-a322-4cff-8ce2-147c4c9ca95b
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
