@@ -32,7 +32,7 @@ class V1::ClientAppsController < ApplicationController
   # PATCH/PUT /v1/client_apps/1
   # PATCH/PUT /v1/client_apps/1.json
   def update
-    if @client_app.update(v1_client_app_params)
+    if current_user.client_apps.find_by(id: params[:id])&.update(v1_client_app_params)
       render :show, status: :ok, location: v1_client_app_url(@client_app.reload)
     else
       render json: @client_app.errors, status: :unprocessable_entity
@@ -42,7 +42,7 @@ class V1::ClientAppsController < ApplicationController
   # DELETE /v1/client_apps/1
   # DELETE /v1/client_apps/1.json
   def destroy
-    @client_app.destroy!
+    current_user.client_apps.find_by(id: params[:id])&.destroy!
     head :no_content
   end
 
