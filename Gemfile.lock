@@ -90,6 +90,8 @@ GEM
     debug (1.11.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    doorkeeper (5.8.2)
+      railties (>= 5)
     dotenv (3.2.0)
     drb (2.2.3)
     ed25519 (1.4.0)
@@ -330,6 +332,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
+  doorkeeper (~> 5.8)
   jbuilder
   kamal
   minitest (~> 5.20.0)

@@ -56,3 +56,5 @@ end
 gem "bcrypt", "~> 3.1"
 gem "jbuilder"
 
+
+gem "doorkeeper", "~> 5.8"
