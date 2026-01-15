@@ -11,21 +11,21 @@ This is a backend API that supports managing of apps; similar to appstore. It us
 - Interact with the API using Postman or any API client
 
 # API Endpoints
-**NOTE:** All endpoints listed below require authentication with `Bearer token` except for the ones marked as (no authentication)
+**NOTE:** All endpoints listed below require authentication with `Bearer token` except for the ones marked with **
 
 **Gotchas:** 
-- Don't forget to add `Bearer token` in the `Authorization` header
+- Don't forget to add `Bearer __your_token__` in the `Authorization` header
 - Don't forget to add `Content-Type: application/json` in the `Headers` section
 
 ### Users
-- POST localhost:3000/v1/users/create (no authentication)
-- POST localhost:3000/v1/users/login (no authentication)
+- POST localhost:3000/v1/users/create **
+- POST localhost:3000/v1/users/login **
 - GET localhost:3000/v1/users/me
 
 ### Client Apps
-- GET localhost:3000/v1/client_apps (no authentication)
-- GET localhost:3000/v1/client_apps?filter=<filter> (no authentication)
-- GET localhost:3000/v1/client_apps/:id (no authentication)
+- GET localhost:3000/v1/client_apps **
+- GET localhost:3000/v1/client_apps?filter=_filter_text_ **
+- GET localhost:3000/v1/client_apps/:id **
 - POST localhost:3000/v1/client_apps
 - PUT localhost:3000/v1/client_apps/:id
 - DELETE localhost:3000/v1/client_apps/:id
@@ -100,4 +100,20 @@ curl --location --request POST 'localhost:3000/v1/client_apps' \
     "tagline": "Apple Maps",
     "image_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTksInB1ciI6ImJsb2JfaWQifX0=--1fa9487f9ad68d2791a5e7184c8bf1cb80c88b7c/IMG_8065.heic"
 }
+```
+
+- Filter client apps:
+```bash
+#Request Sent: 
+curl --location --request GET 'localhost:3000/v1/client_apps?filter=apple'
+
+#Response Received:
+[
+    {
+        "id": 19,
+        "name": "maps",
+        "tagline": "Apple Maps",
+        "image_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUsInB1ciI6ImJsb2JfaWQifX0=--8d849ff8ceb248ec333b85c7322715c6b4b26feb/IMG_8065.heic"
+    }
+]
 ```
