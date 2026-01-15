@@ -1,5 +1,5 @@
 # What this app does
-This is a backend API app that supports managing of apps; similar to appstore. It uses Doorkeeper tokens to authenticate users. Listing of apps is public, but creating, updating, and deleting apps is only for authenticated users.
+This is a backend API that supports managing of apps; similar to appstore. It uses Doorkeeper tokens to authenticate users. Listing of apps is public, but creating, updating, and deleting apps is only for authenticated users.
 
 # How to run the app
 

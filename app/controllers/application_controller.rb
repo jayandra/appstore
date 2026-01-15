@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   # Use this in controllers that need authentication
   def authenticate_user!
     doorkeeper_authorize!
-    render json: { error: "User not found" }, status: :unauthorized and return unless current_user
+    head :unauthorized unless current_user
   end
 
   def current_user
