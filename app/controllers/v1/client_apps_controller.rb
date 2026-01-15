@@ -33,7 +33,7 @@ class V1::ClientAppsController < ApplicationController
   # PATCH/PUT /v1/client_apps/1.json
   def update
     if @client_app.update(v1_client_app_params)
-      render :show, status: :ok, location: v1_client_app_url(@client_app)
+      render :show, status: :ok, location: v1_client_app_url(@client_app.reload)
     else
       render json: @client_app.errors, status: :unprocessable_entity
     end
@@ -54,6 +54,6 @@ class V1::ClientAppsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def v1_client_app_params
-      params.permit(:name, :tagline, :image_filename, :filter)
+      params.permit(:id, :name, :tagline, :image_filename, :filter)
     end
 end
