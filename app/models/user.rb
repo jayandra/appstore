@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_many :client_apps, dependent: :destroy
   before_validation :set_uuid
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :uuid, presence: true, uniqueness: true

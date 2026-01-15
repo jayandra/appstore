@@ -10,13 +10,13 @@ class V1::UsersController < ApplicationController
   end
 
   def destroy
-     @user = User.find_by(uuid: params["uuid"])
-     begin
+    @user = User.find_by(uuid: params[:uuid])
+    if @user
       @user.destroy
       head :no_content
-     rescue
+    else
       render json: { errors: [ "No matching user found" ] }, status: :not_found
-     end
+    end
   end
 
   def login
