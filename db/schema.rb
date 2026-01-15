@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_14_201456) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_14_214752) do
   create_table "client_apps", force: :cascade do |t|
     t.string "name"
     t.string "tagline"
-    t.string "image_url"
+    t.string "image_filename"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
