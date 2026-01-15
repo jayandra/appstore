@@ -51,6 +51,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "pry"
 end
 
 gem "bcrypt", "~> 3.1"
@@ -58,3 +59,5 @@ gem "jbuilder"
 
 
 gem "doorkeeper", "~> 5.8"
+
+gem "aws-sdk-s3", "~> 1.211"

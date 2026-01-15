@@ -73,6 +73,25 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
     ast (2.4.3)
+    aws-eventstream (1.4.0)
+    aws-partitions (1.1204.0)
+    aws-sdk-core (3.241.3)
+      aws-eventstream (~> 1, >= 1.3.0)
+      aws-partitions (~> 1, >= 1.992.0)
+      aws-sigv4 (~> 1.9)
+      base64
+      bigdecimal
+      jmespath (~> 1, >= 1.6.1)
+      logger
+    aws-sdk-kms (1.120.0)
+      aws-sdk-core (~> 3, >= 3.241.3)
+      aws-sigv4 (~> 1.5)
+    aws-sdk-s3 (1.211.0)
+      aws-sdk-core (~> 3, >= 3.241.3)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.5)
+    aws-sigv4 (1.12.1)
+      aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
     bcrypt (3.1.21)
     bcrypt_pbkdf (1.1.2)
@@ -83,6 +102,7 @@ GEM
     brakeman (7.1.2)
       racc
     builder (3.3.0)
+    coderay (1.1.3)
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
     crass (1.0.6)
@@ -114,6 +134,7 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
+    jmespath (1.6.2)
     json (2.18.0)
     kamal (2.10.1)
       activesupport (>= 7.0)
@@ -139,6 +160,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.8.0)
@@ -181,6 +203,10 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.8.0)
+    pry (0.16.0)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+      reline (>= 0.6.0)
     psych (5.3.1)
       date
       stringio
@@ -328,6 +354,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  aws-sdk-s3 (~> 1.211)
   bcrypt (~> 3.1)
   bootsnap
   brakeman
@@ -337,6 +364,7 @@ DEPENDENCIES
   kamal
   minitest (~> 5.20.0)
   mutex_m
+  pry
   puma (>= 5.0)
   rails (~> 8.0.4)
   rubocop-rails-omakase
