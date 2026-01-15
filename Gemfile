@@ -19,7 +19,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "mutex_m"
 
 group :test do
-  gem "minitest", "~> 5.20.0"
+  gem "minitest", "~> 6.0.1"
 end
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
