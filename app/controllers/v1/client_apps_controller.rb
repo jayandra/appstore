@@ -5,10 +5,12 @@ class V1::ClientAppsController < ApplicationController
   # GET /v1/client_apps
   # GET /v1/client_apps.json
   def index
-    if params[:filter].blank?
-      @client_apps = ClientApp.all
-    else
-      @client_apps = ClientApp.where("name LIKE ? or tagline LIKE ?", "%#{params[:filter]}%", "%#{params[:filter]}%")
+    @client_apps = Rails.cache.fetch("v1_client_apps_#{params[:filter]}_#{ClientApp.maximum(:updated_at)}", expires_in: 30.minutes) do
+      if params[:filter].blank?
+        ClientApp.all.to_a
+      else
+         ClientApp.where("name LIKE ? or tagline LIKE ?", "%#{params[:filter]}%", "%#{params[:filter]}%").to_a
+      end
     end
   end
 
@@ -49,7 +51,9 @@ class V1::ClientAppsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client_app
-      @client_app = ClientApp.find(params[:id])
+      @client_app = Rails.cache.fetch("v1_client_app_#{params[:id]}") do
+        ClientApp.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
